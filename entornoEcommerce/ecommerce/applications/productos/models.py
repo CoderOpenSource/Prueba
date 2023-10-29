@@ -3,10 +3,6 @@ from django.core.exceptions import ValidationError
 class Color(models.Model):
     nombre = models.CharField(max_length=100)
 
-class Tamaño(models.Model):
-    nombre = models.CharField(max_length=100)
-    dimensiones = models.CharField(max_length=100)
-
 
 
 
@@ -42,12 +38,10 @@ class ProductoDetalle(models.Model):
     ]
 
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
-    color = models.ForeignKey(Color, on_delete=models.CASCADE)
-    tamaño = models.ForeignKey(Tamaño, on_delete=models.CASCADE)
+    color = models.ForeignKey(Color, on_delete=models.CASCADE, blank=True, null=True)
     imagen2D = models.ImageField(upload_to='productos/imagenes2d/', blank=True, null=True)
-
     def __str__(self):
-        return f"{self.producto.nombre} - {self.color.nombre} - {self.tamaño.nombre}"
+        return f"{self.producto.nombre} - {self.color.nombre}"
 
 
 class Modelo3D(models.Model):

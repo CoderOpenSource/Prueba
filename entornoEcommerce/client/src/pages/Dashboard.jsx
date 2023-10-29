@@ -14,6 +14,7 @@ import CreateProducto from '../components/productos/producto/CreateProducto';
 import ListaCategorias from '../components/productos/categoria/ListaCategoria';
 import ListaSubcategorias from '../components/productos/subcategoria/ListaSubcategoria';
 import CreateSubcategoria from '../components/productos/subcategoria/CreateSubcategoria';
+import EditarSubcategoria from '../components/productos/subcategoria/EditarSubcategoria';
 import CreateCategoria from '../components/productos/categoria/CreateCategoria';
 import ListaColores from '../components/colores/ListaColores';
 import CreateColores from '../components/colores/CreateColores';
@@ -363,6 +364,7 @@ const formattedTime = `${hours}:${minutes}`;
         <Route path="/productos/categorias/" element={<ListaCategorias />} />
         <Route path="/productos/subcategorias/" element={<ListaSubcategorias />} />
         <Route path="/productos/subcategorias/create" element={<CreateSubcategoria />} />
+        <Route path="/productos/subcategorias/:id/edit" element={<EditarSubcategoria />} />
         <Route path="/productos/categorias/create" element={<CreateCategoria />} />
         <Route path="/productos/colores/" element={<ListaColores />} />
         <Route path="/productos/colores/create" element={<CreateColores />} />

@@ -11,6 +11,7 @@ function ClienteCreate() {
   const [telefono, setTelefono] = useState('');
   const [password, setPassword] = useState(''); // Nuevo estado para contraseña
   const [newAvatar, setNewAvatar] = useState(null);
+  const [address, setAddress] = useState('');
   const [error, setError] = useState(null);
 
   const handleSubmit = (event) => {
@@ -22,11 +23,12 @@ function ClienteCreate() {
     formData.append('email', email);
     formData.append('telefono', telefono);
     formData.append('password', password);
+    formData.append('address', address);
     if (newAvatar) {
         formData.append('foto_perfil', newAvatar);
     }
 
-    axios.post(`http://192.168.252.85/users/usuarios-cliente/`, formData, {
+    axios.post(`http://165.227.68.145/users/usuarios-cliente/`, formData, {
         headers: {
             'Content-Type': 'multipart/form-data',
         }
@@ -99,7 +101,15 @@ function ClienteCreate() {
               style={styles.whiteInput}
             />
           </div>
-
+          <div style={styles.formGroup}>
+            <label style={styles.label}>Dirección:</label>
+            <input
+              type="text"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              style={styles.whiteInput}
+            />
+          </div>
           <div style={styles.formGroup}>
             <label style={styles.label}>Foto de Perfil:</label>
             <input

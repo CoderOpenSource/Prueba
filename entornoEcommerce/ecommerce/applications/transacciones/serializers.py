@@ -3,7 +3,7 @@ from .models import Orden, Transacción, Factura, TipoPago, Carrito, CarritoProd
 from ..productos.models import ProductoDetalle
 from ..productos.serializers import ProductoDetalleSerializer
 from django.db import transaction
-
+from ..sucursales.models import Inventario
 from ..usuarios.serializers import UsuarioSerializer
 class OrdenProductoDetalleSerializer(serializers.ModelSerializer):
     class Meta:
@@ -72,6 +72,10 @@ class CarritoProductoDetalleSerializer(serializers.ModelSerializer):
             return ProductoDetalleSerializer(obj.productodetalle).data
         return None
 
+from django.db import transaction
+from django.db.models import F
+from django.core.exceptions import ValidationError
+
 class CarritoSerializer(serializers.ModelSerializer):
     productos_detalle = CarritoProductoDetalleSerializer(source='carritoproductodetalle_set', many=True, required=False)
 
@@ -79,40 +83,96 @@ class CarritoSerializer(serializers.ModelSerializer):
         model = Carrito
         fields = '__all__'
 
-
     @transaction.atomic  # Asegura que todo dentro de este método sea una transacción única
     def create(self, validated_data):
-        productos_detalle_data = validated_data.pop('productos_detalle', None)  # Manejar si productos_detalle es None
-
-        # Crear Carrito primero para obtener un ID
+        print(validated_data)
+        print("Creating cart...")
+        productos_detalle_data = validated_data.pop('productos_detalle', None)
         carrito = Carrito.objects.create(**validated_data)
+        print(f"productos_detalle_data: {productos_detalle_data}")
 
-        # Si hay datos de productos_detalle, entonces los creamos
         if productos_detalle_data:
             for producto_detalle_data in productos_detalle_data:
+                producto = ProductoDetalle.objects.get(id=producto_detalle_data['productodetalle'].id)
+                inventario = Inventario.objects.get(productodetalle=producto)
+
+                # Verificar si hay suficiente inventario antes de crear
+                if inventario.cantidad < producto_detalle_data['cantidad']:
+                    raise ValidationError('Inventario insuficiente')
+
+                # Crear el detalle del carrito
                 CarritoProductoDetalle.objects.create(carrito=carrito, **producto_detalle_data)
+
+                print(f"Producto Detalle ID: {producto_detalle_data['productodetalle'].id}")
+                print(f"Cantidad a Descontar: {producto_detalle_data['cantidad']}")
+                print(f"Inventario Antes: {inventario.cantidad}")
+
+                # Descontar del inventario
+                inventario.cantidad -= producto_detalle_data['cantidad']
+                inventario.save()
+
+                print(f"Inventario Después: {inventario.cantidad}")
 
         return carrito
 
+    from django.core.exceptions import ValidationError
+
     def update(self, instance, validated_data):
-        productos_detalle_data = validated_data.pop('productos_detalle', [])
-        instance = super().update(instance, validated_data)
+        related_data = self.context['request'].data.get('carritoproductodetalle_set', [])
+        with transaction.atomic():
+            # Actualizar el carrito
+            for attr, value in validated_data.items():
+                setattr(instance, attr, value)
+            instance.save()
 
-        # Añadiendo o actualizando productos
-        for producto_detalle_data in productos_detalle_data:
-            producto_id = producto_detalle_data.get('productodetalle').id
-            cantidad = producto_detalle_data.get('cantidad')
+            existing_items = {item.id: item for item in instance.carritoproductodetalle_set.all()}
 
-            # Buscar si el producto ya está en el carrito
-            carrito_producto_detalle, created = CarritoProductoDetalle.objects.get_or_create(
-                carrito=instance,
-                productodetalle_id=producto_id,
-                defaults={'cantidad': cantidad}
-            )
+            # Procesar cada item en los datos recibidos
+            for item_data in related_data:
+                item_id = item_data.pop('id', None)
+                producto_detalle_id = item_data.get('productodetalle')
 
-            # Si el producto ya estaba en el carrito, actualizar la cantidad
-            if not created:
-                carrito_producto_detalle.cantidad += cantidad
-                carrito_producto_detalle.save()
+                producto_detalle_instance = ProductoDetalle.objects.get(id=producto_detalle_id)
+                item_data['productodetalle'] = producto_detalle_instance
+
+                inventario = Inventario.objects.filter(productodetalle=producto_detalle_instance).first()
+
+                if item_id:  # Actualizando un item existente
+                    item = existing_items.pop(item_id)
+                    cantidad_diferencia = item_data['cantidad'] - item.cantidad
+
+                    # Verificar inventario
+                    if inventario.cantidad < cantidad_diferencia:
+                        raise ValidationError('Inventario insuficiente')
+
+                    # Actualizar item
+                    for attr, value in item_data.items():
+                        # Asumiendo que value es el ID del Carrito que quieres asignar
+                        if attr == 'carrito':
+                            value = Carrito.objects.get(id=value)  # Obtener la instancia de Carrito basada en el ID
+
+                        setattr(item, attr, value)
+                    item.save()
+
+                    # Actualizar inventario
+                    inventario.cantidad -= cantidad_diferencia
+                else:  # Creando un nuevo item
+                    if inventario.cantidad < item_data['cantidad']:
+                        raise ValidationError('Inventario insuficiente')
+
+                    # Crear item
+                    CarritoProductoDetalle.objects.create(carrito=instance, **item_data)
+
+                    # Actualizar inventario
+                    inventario.cantidad -= item_data['cantidad']
+
+                inventario.save()
+
+            # Eliminar items que no están en los datos recibidos y restaurar inventario
+            for item in existing_items.values():
+                inventario = Inventario.objects.filter(productodetalle=item.productodetalle).first()
+                inventario.cantidad += item.cantidad
+                inventario.save()
+                item.delete()
 
         return instance

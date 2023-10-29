@@ -12,7 +12,7 @@ function CreateSubcategoria() {
 
   useEffect(() => {
     // Fetch categorias for dropdown selection
-    axios.get('http://192.168.0.17/productos/categorias/')
+    axios.get('http://192.168.1.26/productos/categorias/')
       .then(response => {
         setCategorias(response.data);
       })
@@ -29,7 +29,7 @@ function CreateSubcategoria() {
       categoria: selectedCategoria  // Using the category ID for the foreign key
     };
 
-    axios.post(`http://192.168.0.17/productos/subcategorias/`, formData)
+    axios.post(`http://192.168.1.26/productos/subcategorias/`, formData)
       .then(response => {
           navigate(`/dashboard/productos/subcategorias`);
       })
