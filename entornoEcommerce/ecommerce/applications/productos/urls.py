@@ -1,10 +1,9 @@
 from rest_framework.routers import DefaultRouter
-from .views import (ColorViewSet, TamañoViewSet, CategoriaViewSet, SubcategoriaViewSet, ProductoViewSet,
+from .views import (ColorViewSet, CategoriaViewSet, SubcategoriaViewSet, ProductoViewSet,
                    ProductoDetalleViewSet, Modelo3DViewSet, ImagenProductoViewSet, ProductoSearchView)
 from django.urls import path
 router = DefaultRouter()
 router.register(r'colores', ColorViewSet)
-router.register(r'tamaños', TamañoViewSet)
 router.register(r'categorias', CategoriaViewSet)
 router.register(r'subcategorias', SubcategoriaViewSet)
 router.register(r'productos', ProductoViewSet)

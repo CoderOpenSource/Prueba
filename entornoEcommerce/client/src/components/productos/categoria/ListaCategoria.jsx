@@ -18,7 +18,7 @@ const ListaCategorias = () => {
     };
 
     const fetchCategorias = () => {
-        axios.get('http://192.168.1.13/productos/categorias/')
+        axios.get('http://192.168.33.85/productos/categorias/')
             .then(response => setCategorias(response.data))
             .catch(error => console.error('Error fetching data:', error));
     };
@@ -34,7 +34,7 @@ const ListaCategorias = () => {
     };
 
     const handleConfirmDelete = () => {
-        axios.delete(`http://192.168.1.13/productos/categorias/${selectedCategoriaId}/`)
+        axios.delete(`http://192.168.33.85/productos/categorias/${selectedCategoriaId}/`)
             .then(() => {
                 closeModal();
                 fetchCategorias();

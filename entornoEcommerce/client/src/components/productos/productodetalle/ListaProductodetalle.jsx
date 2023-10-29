@@ -19,7 +19,7 @@ const ListaProductoDetalle = () => {
     };
 
     const fetchDetalles = () => {
-        axios.get('http://192.168.1.27/productos/productosdetalle/')
+        axios.get('http://192.168.0.16/productos/productosdetalle/')
             .then(response => setDetalles(response.data))
             .catch(error => console.error('Error fetching data:', error));
     }
@@ -35,7 +35,7 @@ const ListaProductoDetalle = () => {
     };
 
     const handleConfirmDelete = () => {
-        axios.delete(`http://192.168.1.27/productos/productosdetalle/${selectedDetalleId}/`)
+        axios.delete(`http://192.168.0.16/productos/productosdetalle/${selectedDetalleId}/`)
             .then(() => {
                 closeModal();
                 fetchDetalles();
@@ -119,8 +119,6 @@ return (
                     <tr key={detalle.id}>
                         <td>{detalle.producto.nombre}</td>
                         <td>{detalle.color.nombre}</td>
-                        <td>{detalle.tamaño.nombre}</td>
-                        <td>{detalle.cantidad}</td>
                         <td><img src={detalle.imagen2D} alt={`Imagen 2D de ${detalle.producto.nombre}`} width="50" /></td>
                         <td>{detalle.estado}</td>
                         <td>
