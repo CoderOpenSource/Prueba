@@ -1,15 +1,11 @@
 from rest_framework import serializers
-from .models import Color, Tamaño, Categoria, Producto, ProductoDetalle, Modelo3D, ImagenProducto, Subcategoria
+from .models import Color, Categoria, Producto, ProductoDetalle, Modelo3D, ImagenProducto, Subcategoria
 
 class ColorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Color
         fields = '__all__'
 
-class TamañoSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Tamaño
-        fields = '__all__'
 
 class CategoriaSerializer(serializers.ModelSerializer):
     class Meta:
@@ -70,11 +66,9 @@ class ProductoDetalleSerializer(serializers.ModelSerializer):
     producto_id = serializers.PrimaryKeyRelatedField(source='producto', queryset=Producto.objects.all(),
                                                      write_only=True)
     color_id = serializers.PrimaryKeyRelatedField(source='color', queryset=Color.objects.all(), write_only=True)
-    tamaño_id = serializers.PrimaryKeyRelatedField(source='tamaño', queryset=Tamaño.objects.all(), write_only=True)
 
     producto = ProductoSerializer(read_only=True)
     color = ColorSerializer(read_only=True)
-    tamaño = TamañoSerializer(read_only=True)
 
     class Meta:
         model = ProductoDetalle

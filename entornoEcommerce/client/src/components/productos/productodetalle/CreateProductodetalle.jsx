@@ -9,25 +9,21 @@ function CreateProductoDetalle() {
 
   const [productos, setProductos] = useState([]);
   const [colores, setColores] = useState([]);
-  const [tamaños, setTamaños] = useState([]);
   const [selectedProducto, setSelectedProducto] = useState('');
   const [selectedColor, setSelectedColor] = useState('');
-  const [selectedTamaño, setSelectedTamaño] = useState('');
   const [cantidad, setCantidad] = useState(0);
   const [imagen2D, setImagen2D] = useState(null);
   const [estado, setEstado] = useState('disponible');
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Fetch productos, colores, y tamaños for dropdown selection
+    // Fetch productos, colores for dropdown selection
     axios.all([
-      axios.get('http://192.168.1.27/productos/productos/'),
-      axios.get('http://192.168.1.27/productos/colores/'),
-      axios.get('http://192.168.1.27/productos/tamaños/')
-    ]).then(axios.spread((productosData, coloresData, tamañosData) => {
+      axios.get('http://165.227.68.145/productos/productos/'),
+      axios.get('http://165.227.68.145/productos/colores/'),
+    ]).then(axios.spread((productosData, coloresData) => {
       setProductos(productosData.data);
       setColores(coloresData.data);
-      setTamaños(tamañosData.data);
     })).catch(err => {
       console.error("Error fetching data:", err);
     });
@@ -37,16 +33,13 @@ function CreateProductoDetalle() {
     event.preventDefault();
     console.log(selectedProducto);
     console.log(selectedColor);
-    console.log(selectedTamaño);
     const formData = new FormData();
     formData.append('producto_id', selectedProducto);
     formData.append('color_id', selectedColor);
-    formData.append('tamaño_id', selectedTamaño);
-    formData.append('cantidad', cantidad);
     formData.append('imagen2D', imagen2D);
     formData.append('estado', estado);
 
-    axios.post(`http://192.168.1.27/productos/productosdetalle/`, formData)
+    axios.post(`http://165.227.68.145/productos/productosdetalle/`, formData)
       .then(response => {
           navigate(`/dashboard/productos/productosdetalle/`);
       })
@@ -84,32 +77,6 @@ function CreateProductoDetalle() {
             </select>
           </div>
 
-          <div style={styles.formGroup}>
-            <label style={styles.label}>Tamaño:</label>
-            <select
-              value={selectedTamaño}
-              onChange={(e) => setSelectedTamaño(e.target.value)}
-              style={styles.whiteInput}
-            >
-              <option value="" disabled>Selecciona un tamaño</option>
-              {tamaños.map(tamaño => (
-                <option key={tamaño.id} value={tamaño.id}>
-                  {tamaño.nombre}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div style={styles.formGroup}>
-            <label style={styles.label}>Cantidad:</label>
-            <input
-              type="number"
-              min="0"
-              value={cantidad}
-              onChange={(e) => setCantidad(e.target.value)}
-              style={styles.whiteInput}
-            />
-          </div>
 
           <div style={styles.formGroup}>
             <label style={styles.label}>Imagen 2D:</label>

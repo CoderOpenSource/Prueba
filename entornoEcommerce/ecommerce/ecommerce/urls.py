@@ -24,4 +24,5 @@ urlpatterns = [
     path('transacciones/', include('applications.transacciones.urls')),
     path('sucursales/', include('applications.sucursales.urls')),
     path('reservas/', include('applications.reservas.urls')),
+    path('productos_favoritos/', include('applications.favoritos.urls'))
 ]

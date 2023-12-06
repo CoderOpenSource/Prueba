@@ -15,7 +15,7 @@ function CreateCategoria() {
       nombre: nombre
     };
 
-    axios.post(`http://192.168.67.85/productos/categorias/`, formData)
+    axios.post(`http://165.227.68.145/productos/categorias/`, formData)
       .then(response => {
           navigate(`/dashboard/productos/categorias`);
       })

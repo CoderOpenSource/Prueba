@@ -12,7 +12,7 @@ function ClienteEdit() {
   useEffect(() => {
     console.log("Página TrabajadorEdit se está cargando con el ID:", id);
     // Traemos los datos del usuario
-    axios.get(`http://192.168.1.14/users/usuarios-cliente/${id}/`)
+    axios.get(`http://165.227.68.145/users/usuarios-cliente/${id}/`)
       .then(response => {
         setUser(response.data);
       })
@@ -29,11 +29,12 @@ function ClienteEdit() {
     formData.append('first_name', user.first_name);
     formData.append('email', user.email);
     formData.append('telefono', user.telefono);
+
     if (newAvatar) {
         formData.append('foto_perfil', newAvatar);
     }
 
-    axios.put(`http://192.168.1.14/users/usuarios-cliente/${id}/`, formData, {
+    axios.put(`http://165.227.68.145/users/usuarios-cliente/${id}/`, formData, {
         headers: {
             'Content-Type': 'multipart/form-data',
         }

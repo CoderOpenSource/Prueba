@@ -1,5 +1,5 @@
-from .models import Color, Tamaño, Categoria, Subcategoria, Producto, ProductoDetalle, Modelo3D, ImagenProducto
-from .serializers import (ColorSerializer, TamañoSerializer, CategoriaSerializer, SubcategoriaReadSerializer,
+from .models import Color, Categoria, Subcategoria, Producto, ProductoDetalle, Modelo3D, ImagenProducto
+from .serializers import (ColorSerializer, CategoriaSerializer, SubcategoriaReadSerializer,
                           SubcategoriaWriteSerializer,
                          ProductoDetalleSerializer, Modelo3DSerializer)
 from rest_framework import viewsets, status
@@ -16,10 +16,6 @@ def ProductoSearchView(request):
 class ColorViewSet(viewsets.ModelViewSet):
     queryset = Color.objects.all()
     serializer_class = ColorSerializer
-
-class TamañoViewSet(viewsets.ModelViewSet):
-    queryset = Tamaño.objects.all()
-    serializer_class = TamañoSerializer
 
 class CategoriaViewSet(viewsets.ModelViewSet):
     queryset = Categoria.objects.all()

@@ -7,7 +7,7 @@ import ResultsPage from "./ecommerce/ResultsPage";
 import ProductDetail from "./ecommerce/ProductDetail";
 import ResultsPageHombre from "./ecommerce/ResultsPageHombre";
 import ResultsPageMujer from "./ecommerce/ResultsPageMujer";
-import Catalogo from "./ecommerce/Catalogo";
+import Catalogo from "./ecommerce/catalogo";
 import Ofertas from "./ecommerce/Ofertas";
 import UserProfile from "./ecommerce/UserProfile";
 import UserEdit from "./ecommerce/UserEdit";

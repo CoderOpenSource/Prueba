@@ -7,7 +7,7 @@ function UserProfile() {
   const [userData, setUserData] = useState(null);
   const { id } = useParams();  // Obtener el ID del usuario directamente desde useParams
   useEffect(() => {
-    axios.get(`http://192.168.0.16/users/usuarios/${id}/`)
+    axios.get(`http://165.227.68.145/users/usuarios/${id}/`)
       .then(response => {
         setUserData(response.data);
       })

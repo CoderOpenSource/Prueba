@@ -10,7 +10,7 @@ function Autocomplete({ onSelected }) {
     if (!query) return;
 
     setIsLoading(true);
-    axios.get(`http://192.168.1.27/productos/productos/?search=${query}`)
+    axios.get(`http://165.227.68.145/productos/productos/?search=${query}`)
       .then(response => {
         setResults(response.data);
         setIsLoading(false);
