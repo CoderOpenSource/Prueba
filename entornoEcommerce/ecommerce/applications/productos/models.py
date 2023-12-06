@@ -29,7 +29,7 @@ class Producto(models.Model):
     descuento_porcentaje = models.DecimalField(max_digits=5, decimal_places=2, default=0.00)  # Porcentaje de descuento
     imagenes = models.ManyToManyField('ImagenProducto', related_name='productos_asociados')  # 'ImagenProducto' como string.
     fecha_creacion = models.DateTimeField(auto_now_add=True)
-
+    proveedor = models.CharField(max_length=100, blank=True, null=True)
 
 class ProductoDetalle(models.Model):
     ESTADOS_POSIBLES = [
@@ -40,6 +40,7 @@ class ProductoDetalle(models.Model):
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
     color = models.ForeignKey(Color, on_delete=models.CASCADE, blank=True, null=True)
     imagen2D = models.ImageField(upload_to='productos/imagenes2d/', blank=True, null=True)
+    proveedor = models.CharField(max_length=100, blank=True, null=True)
     def __str__(self):
         return f"{self.producto.nombre} - {self.color.nombre}"
 

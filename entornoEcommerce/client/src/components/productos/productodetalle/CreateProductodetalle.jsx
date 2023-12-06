@@ -19,8 +19,8 @@ function CreateProductoDetalle() {
   useEffect(() => {
     // Fetch productos, colores for dropdown selection
     axios.all([
-      axios.get('http://192.168.0.16/productos/productos/'),
-      axios.get('http://192.168.0.16/productos/colores/'),
+      axios.get('http://165.227.68.145/productos/productos/'),
+      axios.get('http://165.227.68.145/productos/colores/'),
     ]).then(axios.spread((productosData, coloresData) => {
       setProductos(productosData.data);
       setColores(coloresData.data);
@@ -39,7 +39,7 @@ function CreateProductoDetalle() {
     formData.append('imagen2D', imagen2D);
     formData.append('estado', estado);
 
-    axios.post(`http://192.168.0.16/productos/productosdetalle/`, formData)
+    axios.post(`http://165.227.68.145/productos/productosdetalle/`, formData)
       .then(response => {
           navigate(`/dashboard/productos/productosdetalle/`);
       })

@@ -8,8 +8,9 @@ class Sucursal(models.Model):
     nombre = models.CharField(max_length=100)
     direccion = models.CharField(max_length=255)
     telefono = models.CharField(max_length=15)
-
-    def __str__(self):
+    latitud = models.FloatField()  # Campo para la latitud
+    longitud = models.FloatField()
+def __str__(self):
         return self.nombre
 
 

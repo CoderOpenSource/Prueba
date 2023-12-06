@@ -111,7 +111,7 @@ function Login() {
 
   try {
     console.log('Before sending request');
-    const response = await fetch('http://192.168.0.16/users/login/', {
+    const response = await fetch('http://165.227.68.145/users/login/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password }),

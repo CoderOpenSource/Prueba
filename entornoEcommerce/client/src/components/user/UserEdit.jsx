@@ -11,7 +11,7 @@ function UserEdit() {
   const [password, setPassword] = useState('');
   useEffect(() => {
     // Traemos los datos del usuario
-    axios.get(`http://192.168.252.85/users/usuarios/${id}/`)
+    axios.get(`http://165.227.68.145/users/usuarios/${id}/`)
       .then(response => {
         setUser(response.data);
       })
@@ -33,7 +33,7 @@ function UserEdit() {
         formData.append('foto_perfil', newAvatar);
     }
 
-    axios.put(`http://192.168.252.85/users/usuarios/${id}/`, formData, {
+    axios.put(`http://165.227.68.145/users/usuarios/${id}/`, formData, {
         headers: {
             'Content-Type': 'multipart/form-data',
         }

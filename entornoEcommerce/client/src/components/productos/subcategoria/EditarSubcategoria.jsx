@@ -11,7 +11,7 @@ function EditarSubcategoria() {
 
   useEffect(() => {
     // Fetching the subcategory data
-    axios.get(`http://192.168.1.26/productos/subcategorias/${id}/`)
+    axios.get(`http://165.227.68.145/productos/subcategorias/${id}/`)
       .then(response => {
         setSubcategoria(response.data);
       })
@@ -20,7 +20,7 @@ function EditarSubcategoria() {
       });
 
     // Fetching the categories data
-    axios.get('http://192.168.1.26/productos/categorias/')
+    axios.get('http://165.227.68.145/productos/categorias/')
       .then(response => {
         setCategorias(response.data);
       })
@@ -32,7 +32,7 @@ function EditarSubcategoria() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    axios.put(`http://192.168.1.26/productos/subcategorias/${id}/`, subcategoria)
+    axios.put(`http://165.227.68.145/productos/subcategorias/${id}/`, subcategoria)
       .then(response => {
         navigate(`/dashboard/productos/subcategorias/`);
       })

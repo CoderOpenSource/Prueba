@@ -18,7 +18,7 @@ const ListarInventarios = () => {
     };
 
     const fetchInventarios = () => {
-        fetch('http://192.168.0.16/sucursales/inventarios/')
+        fetch('http://165.227.68.145/sucursales/inventarios/')
             .then(response => response.json())
             .then(data => setInventarios(data))
             .catch(error => console.error('Error fetching data:', error));
@@ -35,7 +35,7 @@ const ListarInventarios = () => {
     };
 
     const handleConfirmDelete = () => {
-        axios.delete(`http://192.168.0.16/sucursales/inventarios/${selectedInventoryId}/`)
+        axios.delete(`http://165.227.68.145/sucursales/inventarios/${selectedInventoryId}/`)
             .then(() => {
                 closeModal();
                 fetchInventarios();

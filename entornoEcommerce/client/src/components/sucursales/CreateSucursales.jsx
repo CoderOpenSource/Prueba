@@ -19,7 +19,7 @@ function CreateSucursales() {
             telefono,
         };
 
-        axios.post('http://192.168.0.16/sucursales/sucursales/', sucursalData)
+        axios.post('http://165.227.68.145/sucursales/sucursales/', sucursalData)
             .then(response => {
                 navigate('/dashboard/sucursales/sucursales/');
             })

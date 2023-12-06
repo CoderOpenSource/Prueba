@@ -19,7 +19,7 @@ const ListaProductoDetalle = () => {
     };
 
     const fetchDetalles = () => {
-        axios.get('http://192.168.0.16/productos/productosdetalle/')
+        axios.get('http://165.227.68.145/productos/productosdetalle/')
             .then(response => setDetalles(response.data))
             .catch(error => console.error('Error fetching data:', error));
     }
@@ -35,7 +35,7 @@ const ListaProductoDetalle = () => {
     };
 
     const handleConfirmDelete = () => {
-        axios.delete(`http://192.168.0.16/productos/productosdetalle/${selectedDetalleId}/`)
+        axios.delete(`http://165.227.68.145/productos/productosdetalle/${selectedDetalleId}/`)
             .then(() => {
                 closeModal();
                 fetchDetalles();

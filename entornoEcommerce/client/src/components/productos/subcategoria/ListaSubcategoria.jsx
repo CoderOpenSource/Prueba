@@ -18,7 +18,7 @@ const ListaSubcategorias = () => {
     };
 
     const fetchSubcategorias = () => {
-        axios.get('http://192.168.33.85/productos/subcategorias/')
+        axios.get('http://165.227.68.145/productos/subcategorias/')
             .then(response => setSubcategorias(response.data))
             .catch(error => console.error('Error fetching data:', error));
     };
@@ -34,7 +34,7 @@ const ListaSubcategorias = () => {
     };
 
     const handleConfirmDelete = () => {
-        axios.delete(`http://192.168.33.85/productos/subcategorias/${selectedSubcategoriaId}/`)
+        axios.delete(`http://165.227.68.145/productos/subcategorias/${selectedSubcategoriaId}/`)
             .then(() => {
                 closeModal();
                 fetchSubcategorias();

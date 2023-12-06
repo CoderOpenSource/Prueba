@@ -20,15 +20,22 @@ class Reserva(models.Model):
         return timezone.now() - self.fecha_reserva > timedelta(days=1)
 
     def _update_inventario(self, increment=False):
-        # Obtiene el inventario basado en el producto_detalle
-        inventario = Inventario.objects.get(productodetalle=self.producto_detalle)
+        inventarios = Inventario.objects.filter(productodetalle=self.producto_detalle)
+        if not inventarios:
+            # Si no se encuentra ningún objeto Inventario, podrías querer manejar este caso.
+            # Por ejemplo, puedes levantar una excepción o simplemente retornar.
+            raise ValueError("No se encontró el inventario para el detalle del producto.")
 
-        if increment:
-            inventario.cantidad += self.cantidad
-        else:
-            inventario.cantidad -= self.cantidad
-
-        inventario.save()
+        for inventario in inventarios:
+            # Si increment es True, aumenta el inventario, de lo contrario, lo reduce.
+            if increment:
+                inventario.cantidad += self.cantidad
+            else:
+                inventario.cantidad -= self.cantidad
+                # Asegúrate de no tener cantidades negativas en el inventario.
+                if inventario.cantidad < 0:
+                    inventario.cantidad = 0
+            inventario.save()
 
     def save(self, *args, **kwargs):
         if not self.pk:  # Si es una nueva reserva

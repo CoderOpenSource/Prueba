@@ -15,7 +15,7 @@ function CreateColores() {
       nombre: nombre
     };
 
-    axios.post(`http://192.168.26.85/productos/colores/`, formData)
+    axios.post(`http://165.227.68.145/productos/colores/`, formData)
       .then(response => {
           navigate(`/dashboard/productos/colores`);
       })

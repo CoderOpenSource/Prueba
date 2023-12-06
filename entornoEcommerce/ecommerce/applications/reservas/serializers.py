@@ -23,13 +23,15 @@ class ReservaSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Ya has reservado este producto.")
 
         # Obtiene el inventario basado en el producto_detalle
-        try:
-            inventario = Inventario.objects.get(productodetalle=producto_detalle)
-        except Inventario.DoesNotExist:
+        inventarios = Inventario.objects.filter(productodetalle=producto_detalle)
+        if not inventarios:
             raise serializers.ValidationError("Inventario no encontrado para el producto seleccionado.")
 
-        # Verifica que la cantidad deseada esté disponible
-        if inventario.cantidad < cantidad_deseada:
+        # Si hay más de un inventario, debes decidir cómo manejarlo.
+        # Por ejemplo, podrías sumar la cantidad disponible si tu lógica de negocio lo permite.
+        cantidad_disponible = sum(inventario.cantidad for inventario in inventarios)
+        if cantidad_disponible < cantidad_deseada:
             raise serializers.ValidationError("No hay suficiente inventario disponible.")
 
         return data
+
