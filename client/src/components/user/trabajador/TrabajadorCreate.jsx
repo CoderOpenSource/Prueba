@@ -26,7 +26,7 @@ function TrabajadorCreate() {
         formData.append('foto_perfil', newAvatar);
     }
 
-    axios.post(`http://137.184.190.92/users/usuarios-Trabajador/`, formData, {
+    axios.post(`http://143.244.183.182/users/usuarios-Trabajador/`, formData, {
         headers: {
             'Content-Type': 'multipart/form-data',
         }

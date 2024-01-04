@@ -11,7 +11,7 @@ function ResultsPageHombre() {
     useEffect(() => {
         const fetchSubcategories = async () => {
             try {
-                const response = await axios.get('http://137.184.190.92/productos/subcategorias/');
+                const response = await axios.get('http://143.244.183.182/productos/subcategorias/');
                 const hombreSubcategories = response.data.filter(subcat => subcat.categoria.id === 1);
                 console.log('Subcategories fetched:', hombreSubcategories);
                 setSubcategories(hombreSubcategories);
@@ -24,28 +24,29 @@ function ResultsPageHombre() {
     }, []);
 
     useEffect(() => {
-        const fetchProducts = async (subcategoryId) => {
+        const fetchProducts = async () => {
             try {
-                let url = 'http://137.184.190.92/productos/productos/';
-                if (subcategoryId) {
-                    url += `?subcategoria=${subcategoryId}`;
-                }
+                const url = 'http://143.244.183.182/productos/productos/';
                 const response = await axios.get(url);
-                console.log('All products fetched:', response.data);
-                const hombreProducts = response.data.filter(producto => producto.categoria === 1);
-                console.log('Filtered products for men:', hombreProducts);
-                setProducts(hombreProducts);
+    
+                // Aquí, solo filtramos los productos que pertenecen a la categoría con id=2.
+                const mujerProducts = response.data.filter(producto => producto.categoria === 1);
+    
+                // Si una subcategoría está seleccionada, aplicamos un filtro adicional basado en la subcategoría.
+                if (selectedSubcategory) {
+                    setProducts(mujerProducts.filter(product => product.subcategoria === selectedSubcategory));
+                } else {
+                    setProducts(mujerProducts);
+                }
             } catch (error) {
                 console.error('Error fetching products:', error);
             }
         };
-
-        fetchProducts(selectedSubcategory);
+    
+        fetchProducts();
     }, [selectedSubcategory]);
+    
 
-    const handleViewMoreClick = (productId) => {
-        navigate(`/products/productdetail/${productId}`);
-    };
 
     const styles = {
     resultsPage: {
@@ -87,7 +88,7 @@ function ResultsPageHombre() {
     return (
         <div style={styles.resultsPage}>
             <div style={styles.resultsHeader}>
-                <h1>Resultados para Hombres</h1>
+                <h1>Resultados para Niños</h1>
                 <h2>SubCategorías</h2>
                 <div style={styles.filterContainer}>
                     {subcategories.map(subcat => (

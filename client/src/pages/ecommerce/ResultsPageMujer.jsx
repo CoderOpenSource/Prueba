@@ -11,7 +11,7 @@ function ResultsPageMujer() {
     useEffect(() => {
         const fetchSubcategories = async () => {
             try {
-                const response = await axios.get('http://137.184.190.92/productos/subcategorias/');
+                const response = await axios.get('http://143.244.183.182/productos/subcategorias/');
                 const mujerSubcategories = response.data.filter(subcat => subcat.categoria.id === 2);
                 setSubcategories(mujerSubcategories);
             } catch (error) {
@@ -25,7 +25,7 @@ function ResultsPageMujer() {
     useEffect(() => {
     const fetchProducts = async () => {
         try {
-            const url = 'http://137.184.190.92/productos/productos/';
+            const url = 'http://143.244.183.182/productos/productos/';
             const response = await axios.get(url);
 
             // Aquí, solo filtramos los productos que pertenecen a la categoría con id=2.
@@ -91,7 +91,7 @@ function ResultsPageMujer() {
         <div style={styles.resultsPage}>
             <div style={styles.resultsHeader}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-                    <h1>Resultados para Mujeres</h1>
+                    <h1>Resultados para Niñas</h1>
                     <h2>SubCategorías</h2>
                 </div>
                 <div style={styles.filterContainer}>

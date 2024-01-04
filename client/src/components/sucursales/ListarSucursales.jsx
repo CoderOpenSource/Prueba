@@ -18,7 +18,7 @@ const ListarSucursales = () => {
     };
 
     const fetchSucursales = () => {
-        fetch('http://137.184.190.92/sucursales/sucursales/')
+        fetch('http://143.244.183.182/sucursales/sucursales/')
             .then(response => response.json())
             .then(data => setSucursales(data))
             .catch(error => console.error('Error fetching data:', error));
@@ -35,7 +35,7 @@ const ListarSucursales = () => {
     };
 
     const handleConfirmDelete = () => {
-        axios.delete(`http://137.184.190.92/sucursales/sucursales/${selectedSucursalId}/`)
+        axios.delete(`http://143.244.183.182/sucursales/sucursales/${selectedSucursalId}/`)
             .then(() => {
                 closeModal();
                 fetchSucursales();

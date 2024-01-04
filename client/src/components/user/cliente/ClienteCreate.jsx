@@ -26,7 +26,7 @@ function ClienteCreate() {
         formData.append('foto_perfil', newAvatar);
     }
 
-    axios.post(`http://137.184.190.92/users/usuarios-cliente/`, formData, {
+    axios.post(`http://143.244.183.182/users/usuarios-cliente/`, formData, {
         headers: {
             'Content-Type': 'multipart/form-data',
         }

@@ -17,7 +17,7 @@ function CreateTamaños() {
       dimensiones: dimensiones
     };
 
-    axios.post(`http://137.184.190.92/productos/tamaños/`, formData)
+    axios.post(`http://143.244.183.182/productos/tamaños/`, formData)
       .then(response => {
         Swal.fire({
           title: 'Éxito!',

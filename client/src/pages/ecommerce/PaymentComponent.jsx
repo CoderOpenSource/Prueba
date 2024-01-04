@@ -21,7 +21,7 @@ function PaymentComponent() {
         setLoading(true);
     };
     useEffect(() => {
-        axios.get(`http://137.184.190.92/users/usuarios-Trabajador/`, {
+        axios.get(`http://143.244.183.182/users/usuarios-Trabajador/`, {
             params: { userID }
         })
         .then(response => {
@@ -36,7 +36,7 @@ function PaymentComponent() {
             console.error('Error fetching user details', error);
         });
 
-        axios.get('http://137.184.190.92/transacciones/tipos_pago/')
+        axios.get('http://143.244.183.182/transacciones/tipos_pago/')
             .then(response => {
                 setPaymentTypes(response.data);
                 if (response.data.length > 0) {
@@ -62,7 +62,7 @@ function PaymentComponent() {
         };
 
         // Código para manejar el envío de datos a la API
-        axios.post('http://137.184.190.92/transacciones/process_payment/', paymentData)
+        axios.post('http://143.244.183.182/transacciones/process_payment/', paymentData)
             .then(response => {
                 alert('Payment Successful!');
             })

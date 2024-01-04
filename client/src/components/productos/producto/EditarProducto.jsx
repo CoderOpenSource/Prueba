@@ -20,7 +20,7 @@ function EditarProducto() {
 
 
     useEffect(() => {
-        axios.get('http://137.184.190.92/productos/categorias/')
+        axios.get('http://143.244.183.182/productos/categorias/')
             .then(response => {
                 setCategorias(response.data);
             })
@@ -28,7 +28,7 @@ function EditarProducto() {
                 console.error("Error al obtener categorías:", err);
                 setError("Hubo un error al obtener las categorías. Por favor intenta nuevamente.");
             });
-        axios.get(`http://137.184.190.92/productos/imagenesproducto/`)
+        axios.get(`http://143.244.183.182/productos/imagenesproducto/`)
             .then(response => {
                 const todasLasImagenes = response.data;
                 const imagenesDelProducto = todasLasImagenes.filter(img => img.producto === parseInt(id));
@@ -39,7 +39,7 @@ function EditarProducto() {
                 setError("Hubo un error al obtener las imágenes. Por favor intenta nuevamente.");
             });
 
-        axios.get(`http://137.184.190.92/productos/productos/${id}/`)
+        axios.get(`http://143.244.183.182/productos/productos/${id}/`)
             .then(response => {
                 const producto = response.data;
                 setNombre(producto.nombre);
@@ -58,7 +58,7 @@ function EditarProducto() {
     }, [id]);
     useEffect(() => {
     if (categoria) {
-        axios.get(`http://137.184.190.92/productos/subcategorias/`)
+        axios.get(`http://143.244.183.182/productos/subcategorias/`)
         .then(response => {
             const allSubcategorias = response.data;
             const filteredSubcategories = allSubcategorias.filter(sub => sub.categoria.id === categoria);
@@ -76,7 +76,7 @@ function EditarProducto() {
     const handleRemove = (imagen) => {
     setImagenesExistentes(prevImgs => prevImgs.filter(img => img.id !== imagen.id));
 
-    axios.delete(`http://137.184.190.92/productos/imagenesproducto/${imagen.id}/`)
+    axios.delete(`http://143.244.183.182/productos/imagenesproducto/${imagen.id}/`)
     .then(response => {
         console.log('Imagen eliminada con éxito');
     })
@@ -97,7 +97,7 @@ function EditarProducto() {
     formData.append('categoria', categoria);
     formData.append('subcategoria', subcategoria);
 
-    axios.put(`http://137.184.190.92/productos/productos/${id}/`, formData)
+    axios.put(`http://143.244.183.182/productos/productos/${id}/`, formData)
     .then(response => {
         if (imagenes.length) {
             handleUploadImages();  // Si hay imágenes para cargar, llámalo
@@ -115,7 +115,7 @@ const handleUploadImages = () => {
         const formData = new FormData();
         formData.append('ruta_imagen', image.file);
         formData.append('producto', id);
-        return axios.post(`http://137.184.190.92/productos/imagenesproducto/`, formData, {
+        return axios.post(`http://143.244.183.182/productos/imagenesproducto/`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             }

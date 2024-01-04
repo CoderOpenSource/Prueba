@@ -24,7 +24,7 @@ const ListaProductos = () => {
     };
 
     const fetchProductos = () => {
-        axios.get('http://137.184.190.92/productos/productos/')
+        axios.get('http://143.244.183.182/productos/productos/')
             .then(response => setProductos(response.data))
             .catch(error => console.error('Error fetching data:', error));
     }
@@ -40,7 +40,7 @@ const ListaProductos = () => {
     };
 
     const handleConfirmDelete = () => {
-        axios.delete(`http://137.184.190.92/productos/productos/${selectedProductId}/`)
+        axios.delete(`http://143.244.183.182/productos/productos/${selectedProductId}/`)
             .then(() => {
                 closeModal();
                 fetchProductos();

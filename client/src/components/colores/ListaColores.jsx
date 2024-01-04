@@ -18,7 +18,7 @@ const ListaColores = () => {
     };
 
     const fetchColores = () => {
-        axios.get('http://137.184.190.92/productos/colores/')
+        axios.get('http://143.244.183.182/productos/colores/')
             .then(response => setColores(response.data))
             .catch(error => console.error('Error fetching data:', error));
     };
@@ -34,7 +34,7 @@ const ListaColores = () => {
     };
 
     const handleConfirmDelete = () => {
-        axios.delete(`http://137.184.190.92/productos/colores/${selectedColorId}/`)
+        axios.delete(`http://143.244.183.182/productos/colores/${selectedColorId}/`)
             .then(() => {
                 closeModal();
                 fetchColores();

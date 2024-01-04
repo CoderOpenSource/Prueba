@@ -75,22 +75,22 @@ const navigate = useNavigate();
       <section style={styles.sliderSection}>
         <Slider {...settings}>
           <div>
-            <img src="https://res.cloudinary.com/dkpuiyovk/image/upload/v1697485275/WhatsApp_Image_2023-10-16_at_10.08.56_lriuuu.jpg" alt="Imagen 1" style={styles.sliderImage}/>
+            <img src="https://www.jugueteriasnikki.es/modules/pst_imageslider/views/img/8dc1567ea08a9dc72816840eec622c464c061ab3_banner%20antonio%20juan-04.png" alt="Imagen 1" style={styles.sliderImage}/>
           </div>
           <div>
-            <img src="https://res.cloudinary.com/dkpuiyovk/image/upload/v1697485275/WhatsApp_Image_2023-10-16_at_10.09.09_dvv8h8.jpg" alt="Imagen 2" style={styles.sliderImage}/>
+            <img src="https://www.jugueteriasnikki.es/modules/pst_imageslider/views/img/89e22c9a67e5d5f21c25ae4ea0cdf77f212c0baa_banner%20low%20wish-04.png" alt="Imagen 2" style={styles.sliderImage}/>
           </div>
           <div>
-            <img src="https://res.cloudinary.com/dkpuiyovk/image/upload/v1697485276/WhatsApp_Image_2023-10-16_at_10.03.26_rwq3by.jpg" alt="Imagen 3" style={styles.sliderImage}/>
+            <img src="https://www.jugueteriasnikki.es/modules/pst_imageslider/views/img/e50f9c7bd8ce6b9ee1cead34066da2c36cf32660_banner%20low%20barbie-04.png" alt="Imagen 3" style={styles.sliderImage}/>
           </div>
           <div>
-            <img src="https://images6.alphacoders.com/132/1325712.jpeg" alt="Imagen 4" style={styles.sliderImage}/>
+            <img src="https://www.jugueteriasnikki.es/modules/pst_imageslider/views/img/8caca646e8679c914ee0515d316aade19c1df8f9_banner%20low%20wildtopia-04.png" alt="Imagen 4" style={styles.sliderImage}/>
           </div>
         </Slider>
       </section>
 
       <section style={styles.main}>
-      <h2 style={styles.subtitle}>Características Principales de Stylo Store:</h2>
+      <h2 style={styles.subtitle}>Características Principales de Cindy:</h2>
       <div style={styles.listContainer}>
         <ul style={styles.list}>
           <li>

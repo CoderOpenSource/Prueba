@@ -7,7 +7,7 @@ function UserProfile() {
   const [userData, setUserData] = useState(null);
   const { id } = useParams();  // Obtener el ID del usuario directamente desde useParams
   useEffect(() => {
-    axios.get(`http://137.184.190.92/users/usuarios/${id}/`)
+    axios.get(`http://143.244.183.182/users/usuarios/${id}/`)
       .then(response => {
         setUserData(response.data);
       })
@@ -21,9 +21,9 @@ function UserProfile() {
     return <p>Cargando...</p>;
   }
   const roleMapping = {
-    1: 'Admin',
-    2: 'Trabajador',
-    3: 'Cliente'
+    1: 'Trabajador',
+    2: 'Cliente',
+    3: 'Admin'
 };
 const handleEditClick = () => {
     navigate(`/user/${id}/edit`);

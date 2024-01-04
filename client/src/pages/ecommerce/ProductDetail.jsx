@@ -19,7 +19,7 @@ function ProductVariantCard({ variant }) {
             let carritoId = null;
     
             // Obtener todos los carritos
-            const carritosResponse = await axios.get(`http://137.184.190.92/transacciones/carritos/`);
+            const carritosResponse = await axios.get(`http://143.244.183.182/transacciones/carritos/`);
             console.log(carritosResponse);
     
             // Verificar si alguno pertenece al USER_ID
@@ -29,14 +29,14 @@ function ProductVariantCard({ variant }) {
                 carritoId = carritoUsuario.id; // Si se encuentra, usar el ID de este carrito
             } else {
                 // Si no se encuentra ningún carrito, crea uno nuevo
-                const newCarritoResponse = await axios.post(`http://137.184.190.92/transacciones/carritos/`, {
+                const newCarritoResponse = await axios.post(`http://143.244.183.182/transacciones/carritos/`, {
                     usuario: USER_ID
                 });
                 carritoId = newCarritoResponse.data.id; // Usar el ID del nuevo carrito
             }
     
             // Añadir un nuevo producto al carrito
-            await axios.post(`http://137.184.190.92/transacciones/carrito_detalle/`, {
+            await axios.post(`http://143.244.183.182/transacciones/carrito_detalle/`, {
                 carrito: carritoId,
                 productodetalle: variant.id, // manteniendo el antiguo
                 productodetalle_id: variant.id,
@@ -151,7 +151,7 @@ const [productVariants, setProductVariants] = useState([]); // Nuevo estado para
 useEffect(() => {
         const fetchProductDetails = async () => {
             try {
-                const response = await axios.get(`http://137.184.190.92/productos/productos/${productId}/`);
+                const response = await axios.get(`http://143.244.183.182/productos/productos/${productId}/`);
                 setProduct(response.data);
             } catch (error) {
                 console.error('Hubo un error al obtener los detalles del producto', error);
@@ -161,7 +161,7 @@ useEffect(() => {
         fetchProductDetails();
          const fetchProductVariants = async () => {
             try {
-                const response = await axios.get('http://137.184.190.92/productos/productosdetalle/');
+                const response = await axios.get('http://143.244.183.182/productos/productosdetalle/');
                 const filteredVariants = response.data.filter(variant => variant.producto.id === Number(productId));
                 setProductVariants(filteredVariants);
             } catch (error) {

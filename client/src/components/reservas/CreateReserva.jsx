@@ -14,7 +14,7 @@ function CreateReserva() {
 
   useEffect(() => {
     // Consulta para obtener usuarios
-    axios.get('http://137.184.190.92/users/usuarios-cliente/')
+    axios.get('http://143.244.183.182/users/usuarios-cliente/')
       .then(response => {
         // Asumiendo que la respuesta es un objeto con una propiedad que es un array
         // Cambia 'usuarios' a la propiedad real si es necesario
@@ -25,7 +25,7 @@ function CreateReserva() {
       });
 
     // Consulta para obtener detalles de productos
-    axios.get('http://137.184.190.92/productos/productosdetalle/')
+    axios.get('http://143.244.183.182/productos/productosdetalle/')
       .then(response => {
         // Aquí también, asegúrate de que setProductos recibe un array
         setProductos(response.data);
@@ -43,7 +43,7 @@ function CreateReserva() {
     formData.append('producto_detalle', productoDetalle);
     formData.append('cantidad', cantidad);
 
-    axios.post('http://137.184.190.92/reservas/reservas/', formData, {
+    axios.post('http://143.244.183.182/reservas/reservas/', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },

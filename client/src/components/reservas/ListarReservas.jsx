@@ -18,7 +18,7 @@ const ListarReservas = () => {
     };
 
     const fetchReservas = () => {
-        axios.get('http://137.184.190.92/reservas/reservas/')
+        axios.get('http://143.244.183.182/reservas/reservas/')
             .then(response => {
                 setReservas(response.data);
             })
@@ -36,7 +36,7 @@ const ListarReservas = () => {
     };
 
     const handleConfirmDelete = () => {
-        axios.delete(`http://137.184.190.92/reservas/reservas/${selectedReservaId}/`)
+        axios.delete(`http://143.244.183.182/reservas/reservas/${selectedReservaId}/`)
             .then(() => {
                 closeModal();
                 fetchReservas();

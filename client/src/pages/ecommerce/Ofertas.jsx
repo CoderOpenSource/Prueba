@@ -9,7 +9,7 @@ function Ofertas() {
     useEffect(() => {
     const fetchProducts = async () => {
         try {
-            const response = await axios.get('http://137.184.190.92/productos/productos/');
+            const response = await axios.get('http://143.244.183.182/productos/productos/');
             // Aquí puedes filtrar los productos que están en oferta
             const ofertaProducts = response.data.filter(producto => parseFloat(producto.descuento_porcentaje) > 0);
             setProducts(ofertaProducts);

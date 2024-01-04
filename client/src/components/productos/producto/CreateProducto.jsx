@@ -18,7 +18,7 @@ function CreateProducto() {
 
   useEffect(() => {
     // Obtiene las categorías
-    axios.get('http://137.184.190.92/productos/categorias/')
+    axios.get('http://143.244.183.182/productos/categorias/')
       .then(response => {
         setCategorias(response.data);
       })
@@ -30,7 +30,7 @@ function CreateProducto() {
 
   useEffect(() => {
   if (categoria) {
-    axios.get(`http://137.184.190.92/productos/subcategorias/`)
+    axios.get(`http://143.244.183.182/productos/subcategorias/`)
       .then(response => {
         const allSubcategorias = response.data;
 
@@ -84,7 +84,7 @@ function CreateProducto() {
     formData.append('subcategoria', subcategoria);
     imagenes.forEach(img => formData.append('imagenes', img));
 
-    axios.post(`http://137.184.190.92/productos/productos/`, formData, {
+    axios.post(`http://143.244.183.182/productos/productos/`, formData, {
         headers: {
             'Content-Type': 'multipart/form-data',
         }

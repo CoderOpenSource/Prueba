@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
-const BASE_URL = 'http://137.184.190.92/users';
+const BASE_URL = 'http://143.244.183.182/users';
 
 const AuthContext = createContext();
 

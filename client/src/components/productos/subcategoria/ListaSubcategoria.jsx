@@ -18,7 +18,7 @@ const ListaSubcategorias = () => {
     };
 
     const fetchSubcategorias = () => {
-        axios.get('http://137.184.190.92/productos/subcategorias/')
+        axios.get('http://143.244.183.182/productos/subcategorias/')
             .then(response => setSubcategorias(response.data))
             .catch(error => console.error('Error fetching data:', error));
     };
@@ -34,7 +34,7 @@ const ListaSubcategorias = () => {
     };
 
     const handleConfirmDelete = () => {
-        axios.delete(`http://137.184.190.92/productos/subcategorias/${selectedSubcategoriaId}/`)
+        axios.delete(`http://143.244.183.182/productos/subcategorias/${selectedSubcategoriaId}/`)
             .then(() => {
                 closeModal();
                 fetchSubcategorias();
@@ -120,7 +120,7 @@ const modalButtonStyle = {
                                 <button style={{ marginRight: '10px', cursor: 'pointer' }} onClick={() => handleEditClick(producto.id)}>
                                     ✏️ Editar
                                 </button>
-                                <button style={{ cursor: 'pointer' }} onClick={() => openModal(producto.id)}>
+                                <button style={{ cursor: 'pointer' }} onClick={() => openModal(subcategoria.id)}>
                                     🗑️ Eliminar
                                 </button>
                             </td>

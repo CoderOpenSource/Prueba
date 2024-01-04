@@ -1,5 +1,5 @@
 import NavBar from '../components/NavBar';
-import MainView from './ecommerce/MainView'; // Importa el nuevo componente
+import MainView from './ecommerce/MainView2';
 import { Route, Routes } from 'react-router-dom';
 import React from 'react';
 import { MainContent } from "../components/StyledComponents";

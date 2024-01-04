@@ -13,7 +13,7 @@ function TrabajadorEdit() {
 
   useEffect(() => {
     // Traemos los datos del usuario
-    axios.get('http://137.184.190.92/users/usuarios-Trabajador/${id}/')
+    axios.get('http://143.244.183.182/users/usuarios-Trabajador/${id}/')
       .then(response => {
         setUser(response.data);
       })
@@ -35,7 +35,7 @@ function TrabajadorEdit() {
   }
 
  try {
-    await axios.put(`http://137.184.190.92/users/usuarios-Trabajador/${id}/`, formData, {
+    await axios.put(`http://143.244.183.182/users/usuarios-Trabajador/${id}/`, formData, {
       headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': `Bearer ${authToken}`  // <- Usar el authToken aquí

@@ -12,7 +12,7 @@ function UserEdit() {
   console.log(id);
   useEffect(() => {
     // Traemos los datos del usuario
-    axios.get(`http://137.184.190.92/users/usuarios/${id}/`)
+    axios.get(`http://143.244.183.182/users/usuarios/${id}/`)
       .then(response => {
         setUser(response.data);
       })
@@ -34,7 +34,7 @@ function UserEdit() {
         formData.append('foto_perfil', newAvatar);
     }
 
-    axios.put(`http://137.184.190.92/users/usuarios/${id}/`, formData, {
+    axios.put(`http://143.244.183.182/users/usuarios/${id}/`, formData, {
         headers: {
             'Content-Type': 'multipart/form-data',
         }

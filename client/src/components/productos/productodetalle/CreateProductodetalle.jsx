@@ -21,9 +21,9 @@ function CreateProductoDetalle() {
   useEffect(() => {
     // Fetch productos, colores, y tamaños for dropdown selection
     axios.all([
-      axios.get('http://137.184.190.92/productos/productos/'),
-      axios.get('http://137.184.190.92/productos/colores/'),
-      axios.get('http://137.184.190.92/productos/tamaños/')
+      axios.get('http://143.244.183.182/productos/productos/'),
+      axios.get('http://143.244.183.182/productos/colores/'),
+      axios.get('http://143.244.183.182/productos/tamaños/')
     ]).then(axios.spread((productosData, coloresData, tamañosData) => {
       setProductos(productosData.data);
       setColores(coloresData.data);
@@ -46,7 +46,7 @@ function CreateProductoDetalle() {
     formData.append('imagen2D', imagen2D);
     formData.append('estado', estado);
 
-    axios.post(`http://137.184.190.92/productos/productosdetalle/`, formData)
+    axios.post(`http://143.244.183.182/productos/productosdetalle/`, formData)
       .then(response => {
         Swal.fire({
           title: 'Éxito!',

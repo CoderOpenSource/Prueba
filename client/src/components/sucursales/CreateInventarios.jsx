@@ -12,7 +12,7 @@ function CreateInventarios() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    axios.get('http://137.184.190.92/sucursales/sucursales/') // Asegúrese de que esta URL esté correcta
+    axios.get('http://143.244.183.182/sucursales/sucursales/') // Asegúrese de que esta URL esté correcta
     .then(response => {
       setSucursales(response.data);
     })
@@ -20,7 +20,7 @@ function CreateInventarios() {
       console.error("Error al obtener las sucursales:", err);
     });
 
-    axios.get(`http://137.184.190.92/productos/productosdetalle/`) // Asegúrese de que esta URL esté correcta
+    axios.get(`http://143.244.183.182/productos/productosdetalle/`) // Asegúrese de que esta URL esté correcta
     .then(response => {
       setProductosdetalles(response.data);
     })
@@ -38,7 +38,7 @@ function CreateInventarios() {
       cantidad: cantidad,
     };
 
-    axios.post('http://137.184.190.92/sucursales/inventarios/', formData)
+    axios.post('http://143.244.183.182/sucursales/inventarios/', formData)
     .then(response => {
       Swal.fire({
         title: 'Éxito!',

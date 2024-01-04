@@ -13,7 +13,7 @@ function CartView() {
     useEffect(() => {
         const fetchCartItems = async () => {
             try {
-                const response = await axios.get(`http://137.184.190.92/transacciones/carritos/`);
+                const response = await axios.get(`http://143.244.183.182/transacciones/carritos/`);
                 console.log(response);
                 const userCart = response.data.find(cart => cart.usuario === userID);
 

@@ -18,7 +18,7 @@ const ListarInventarios = () => {
     };
 
     const fetchInventarios = () => {
-        fetch('http://137.184.190.92/sucursales/inventarios/')
+        fetch('http://143.244.183.182/sucursales/inventarios/')
             .then(response => response.json())
             .then(data => setInventarios(data))
             .catch(error => console.error('Error fetching data:', error));
@@ -35,7 +35,7 @@ const ListarInventarios = () => {
     };
 
     const handleConfirmDelete = () => {
-        axios.delete(`http://137.184.190.92/sucursales/inventarios/${selectedInventoryId}/`)
+        axios.delete(`http://143.244.183.182/sucursales/inventarios/${selectedInventoryId}/`)
             .then(() => {
                 closeModal();
                 fetchInventarios();

@@ -15,14 +15,14 @@ function CreateOrdenes() {
   const [productoDetalles, setProductoDetalles] = useState([]);
   const [detalleSeleccionado, setDetalleSeleccionado] = useState('');
   useEffect(() => {
-    axios.get('http://137.184.190.92/users/usuarios-cliente/')
+    axios.get('http://143.244.183.182/users/usuarios-cliente/')
       .then(response => {
         setUsuarios(response.data);
         if(response.data.length > 0) {
           setUsuarioSeleccionado(response.data[0].id.toString());
         }
       }).catch(console.error);
-    axios.get('http://137.184.190.92/productos/productos/').then(response => setProductos(response.data)).catch(console.error);
+    axios.get('http://143.244.183.182/productos/productos/').then(response => setProductos(response.data)).catch(console.error);
   }, []);
 useEffect(() => {
   // Esto se ejecutará cuando productoDetalles cambie
@@ -49,7 +49,7 @@ const agregarProductoDetalleAOrden = () => {
     setProductoSeleccionado(e.target.value);
 
     // Cargando los detalles del producto
-    axios.get('http://137.184.190.92/productos/productosdetalle/')
+    axios.get('http://143.244.183.182/productos/productosdetalle/')
       .then(response => {
         // Filtrar los detalles del producto basado en el producto seleccionado
         const detalles = response.data.filter(detalle => detalle.producto.id.toString() === e.target.value);
@@ -70,7 +70,7 @@ console.log("formData:", formData);
 
     // Aquí puedes enviar tu formulario a tu backend
     // Si tu backend espera una estructura específica, asegúrate de transformar formData como sea necesario
-    axios.post('http://137.184.190.92/transacciones/ordenes/', formData)
+    axios.post('http://143.244.183.182/transacciones/ordenes/', formData)
       .then(response =>
       navigate(`/dashboard/transacciones/ordenes`))
       .catch(error => {

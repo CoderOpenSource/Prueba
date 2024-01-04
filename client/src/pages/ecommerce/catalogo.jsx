@@ -9,7 +9,7 @@ function Catalogo() {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await axios.get('http://137.184.190.92/productos/productos/');
+                const response = await axios.get('http://143.244.183.182/productos/productos/');
                 setProducts(response.data);
             } catch (error) {
                 console.error('Hubo un error al obtener los productos', error);
@@ -79,8 +79,8 @@ function Catalogo() {
 
             <div style={styles.filterContainer}>
                 <span style={styles.filterLabel}>Filtrar por:</span>
-                <button style={styles.filterButton} onClick={handleHombreClick}>Hombre</button>
-                <button style={styles.filterButton} onClick={handleMujerClick}>Mujer</button>
+                <button style={styles.filterButton} onClick={handleHombreClick}>Niños</button>
+                <button style={styles.filterButton} onClick={handleMujerClick}>Niñas</button>
             </div>
 
             <div style={styles.resultsGrid}>

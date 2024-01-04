@@ -19,7 +19,7 @@ const ListaOrdenes = () => {
     };
 
     const fetchTransacciones = () => {
-        axios.get('http://137.184.190.92/transacciones/transacciones/')
+        axios.get('http://143.244.183.182/transacciones/transacciones/')
             .then(response => setTransacciones(response.data))
             .catch(error => console.error('Error fetching data:', error));
     };
@@ -38,7 +38,7 @@ const ListaOrdenes = () => {
     };
 
     const handleConfirmDelete = () => {
-        axios.delete('http://137.184.190.92/transacciones/transacciones/${selectedOrdenId}/')
+        axios.delete('http://143.244.183.182/transacciones/transacciones/${selectedOrdenId}/')
             .then(() => {
                 closeModal();
                 fetchTransacciones();

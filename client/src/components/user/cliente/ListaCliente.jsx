@@ -16,7 +16,7 @@ const ListaCliente = () => {
         navigate(`/dashboard/users/usuarios-cliente/create`);
     };
     const fetchTrabajadores = () => {
-    fetch('http://137.184.190.92/users/usuarios-cliente/')
+    fetch('http://143.244.183.182/users/usuarios-cliente/')
         .then(response => response.json())
         .then(data => setTrabajadores(data))
         .catch(error => console.error('Error fetching data:', error));
@@ -32,7 +32,7 @@ const ListaCliente = () => {
     };
 
     const handleConfirmDelete = () => {
-        axios.delete(`http://137.184.190.92/users/usuarios-cliente/${selectedUserId}/`)
+        axios.delete(`http://143.244.183.182/users/usuarios-cliente/${selectedUserId}/`)
             .then(() => {
                 closeModal();
                 fetchTrabajadores();
@@ -44,7 +44,7 @@ const ListaCliente = () => {
     };
 
     useEffect(() => {
-        fetch('http://137.184.190.92/users/usuarios-cliente/')
+        fetch('http://143.244.183.182/users/usuarios-cliente/')
             .then(response => response.json())
             .then(data => setTrabajadores(data))
             .catch(error => console.error('Error fetching data:', error));

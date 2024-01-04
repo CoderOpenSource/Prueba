@@ -23,7 +23,7 @@ function CreateSucursales() {
             longitud,
         };
 
-        axios.post('http://137.184.190.92/sucursales/sucursales/', sucursalData)
+        axios.post('http://143.244.183.182/sucursales/sucursales/', sucursalData)
             .then(response => {
               Swal.fire({
                 title: 'Éxito!',

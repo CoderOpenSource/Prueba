@@ -15,7 +15,7 @@ function CreateColores() {
       nombre: nombre
     };
 
-    axios.post(`http://137.184.190.92/productos/colores/`, formData)
+    axios.post(`http://143.244.183.182/productos/colores/`, formData)
       .then(response => {
         Swal.fire({
           title: 'Éxito!',

@@ -41,7 +41,7 @@ const handleProfileIconClick = () => {
     }, [showMenu]);
     useEffect(() => {
     if (query) {
-        axios.get(`http://137.184.190.92/productos/productos/?search=${query}`)
+        axios.get(`http://143.244.183.182/productos/productos/?search=${query}`)
             .then(response => {
                 setResults(response.data);
             })
@@ -107,7 +107,7 @@ const handleMouseLeave = () => {
   return (
     <nav style={styles.nav}>
       <div style={styles.navLeft}>
-              <span style={styles.storeName}>STYLO STORE</span> {/* Agregado texto "STYLO STORE" aquí */}
+              <span style={styles.storeName}>JUGUETERIA CINDY</span> {/* Agregado texto "STYLO STORE" aquí */}
         <FontAwesomeIcon icon={faStore} style={styles.logoIcon} onClick={handleIconClick} />
         <FontAwesomeIcon
     icon={faBars}
